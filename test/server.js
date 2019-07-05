@@ -21,7 +21,8 @@ const app = express()
 // response
 app.use((req, res, next) => {
   const username = req.get('Authorization') || 'anonymous'
-  req.user = {username}
+  req.locals.currentUser = {username}
+  req.locals.authenticated = !!username
   next()
 })
 
